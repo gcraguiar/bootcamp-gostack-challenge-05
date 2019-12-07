@@ -12,6 +12,7 @@ export default class Repository extends Component {
     repository: {},
     issues: [],
     loading: true,
+    stateIssues: '',
     pageNumber: 1,
   };
 
@@ -45,7 +46,6 @@ export default class Repository extends Component {
       api.get(`/repos/${repository.full_name}/issues`, {
         params: {
           state,
-          page: 5,
           per_page: 5,
         },
       }),
@@ -54,15 +54,18 @@ export default class Repository extends Component {
     this.setState({
       issues: issues.data,
       loading: false,
+      pageNumber: 1,
+      stateIssues: state,
     });
   };
 
   PageIssues = async page => {
-    const { repository } = this.state;
+    const { repository, stateIssues } = this.state;
 
     const [issues] = await Promise.all([
       api.get(`/repos/${repository.full_name}/issues`, {
         params: {
+          state: stateIssues,
           page,
           per_page: 5,
         },
@@ -140,7 +143,7 @@ export default class Repository extends Component {
               </button>
             )}
 
-            {issues.length == 0 ? (
+            {issues.length === 0 ? (
               <button
                 type="button"
                 disabled
