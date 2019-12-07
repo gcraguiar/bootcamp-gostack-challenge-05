@@ -69,6 +69,7 @@ export const IssueList = styled.ul`
     padding: 15px 10px;
     border: 1px solid #eee;
     border-radius: 4px;
+    margin-bottom: 10px;
 
     & li {
       margin-top: 10px;
@@ -135,8 +136,8 @@ export const IssuePage = styled.div.attrs(props => ({
     color: white;
     padding: 10px 25px;
     text-align: center;
-    font-size: 15px;
-    margin: 2px 1px;
+    font-size: 13px;
+    margin: 1px 1px;
     opacity: 0.6;
     transition: 0.3s;
     display: inline-block;
@@ -151,5 +152,11 @@ export const IssuePage = styled.div.attrs(props => ({
       cursor: not-allowed;
       opacity: 0.6;
     }
+  }
+
+  p {
+    padding: 0px 15px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 `;

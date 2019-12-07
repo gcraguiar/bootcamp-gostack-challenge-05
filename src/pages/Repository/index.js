@@ -25,8 +25,7 @@ export default class Repository extends Component {
       api.get(`/repos/${repoName}`),
       api.get(`/repos/${repoName}/issues`, {
         params: {
-          state: 'open',
-          page: 6,
+          state: 'all',
           per_page: 5,
         },
       }),
@@ -36,6 +35,7 @@ export default class Repository extends Component {
       repository: repository.data,
       issues: issues.data,
       loading: false,
+      stateIssues: 'all',
     });
   }
 
@@ -142,6 +142,8 @@ export default class Repository extends Component {
                 Previous Page
               </button>
             )}
+
+            <p>Page: {pageNumber}</p>
 
             {issues.length === 0 ? (
               <button
